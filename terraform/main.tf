@@ -4,3 +4,7 @@ module "vpc" {
 
 }
 
+module "web_site" {
+  source      = "./modules/web_site"
+  src         = "./resources"
+}
