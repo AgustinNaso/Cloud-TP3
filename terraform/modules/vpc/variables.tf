@@ -9,14 +9,8 @@ variable "cidr_block" {
   type         = string 
 }
 
-variable "main_subnet_name" {
-  description  = "Name tag value for main subnet"
-  type         = string
-  default      = "MainSubnet"
-}
-
-variable "secondary_subnet_name" {
-  description  = "Name tag value for secondary subnet"
-  type         = string
-  default      = "SecondarySubnet"
+variable "zones_qty" {
+  description = "Quantity of zones"
+  type        = number
+  default     = 2
 }

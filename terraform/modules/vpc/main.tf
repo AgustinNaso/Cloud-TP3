@@ -6,21 +6,18 @@ resource "aws_vpc" "main_vpc" {
     }
 }
 
-resource "aws_subnet" "main_subnet" {
-  vpc_id            = aws_vpc.main_vpc.id
-  cidr_block        = "10.0.0.0/24"
-
-  tags = {
-      Name = var.main_subnet_name
-  }
+data "aws_availability_zones" "available" {
+  state = "available"
 }
 
-
-resource "aws_subnet" "secondary_subnet" {
+resource "aws_subnet" "private_subnet" {
   vpc_id            = aws_vpc.main_vpc.id
-  cidr_block        = "10.0.1.0/24"
+  count             = var.zones_qty
+  cidr_block        = cidrsubnet(aws_vpc.main_vpc.cidr_block, 8, count.index)
+  availability_zone = data.aws_availability_zones.available.names[count.index]
+
 
   tags = {
-      Name = var.secondary_subnet_name
+      Name = "private_subnet_${count.index}"
   }
 }
