@@ -3,7 +3,7 @@ resource "random_pet" "this" {
 }
 
 locals {
-  bucket_name = "static-web-site-${random_pet.this.id}"
+  bucket_name = "static-website-${random_pet.this.id}"
 }
 
 
