@@ -1,6 +1,8 @@
 module "static_website" {
   source      = "../modules/static_website"
-  src         = "./resources"
+  static_resources  = local.static_resources
+  bucket_name = local.bucket_name
+  bucket_access_OAI = [module.cdn.static_website_OAI]
 
   providers = {
     aws = aws.aws

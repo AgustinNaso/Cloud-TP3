@@ -2,19 +2,43 @@ resource "random_pet" "this" {
   length = 4
 }
 
-locals {
-  bucket_name = "static-website-${random_pet.this.id}"
+#TODO: WWW BUCKET?
+
+module "log_bucket" {
+  source = "terraform-aws-modules/s3-bucket/aws"
+
+  bucket_prefix = "logs"
+  acl           = "log-delivery-write"
+  force_destroy = true
+
+  attach_deny_insecure_transport_policy = true #DENY NON SSL TRANSPORT
+  attach_require_latest_tls_policy      = true #ALLOW ONLY NEWEST TLS TRANSPORT
 }
 
 
-module "site_bucket" {
+module "website_bucket" {
 
-  bucket = local.bucket_name
+  force_destroy = true
   source = "terraform-aws-modules/s3-bucket/aws"
 
+  block_public_acls       = true
+  block_public_policy     = true
+  ignore_public_acls      = true
+  restrict_public_buckets = true
+
+  attach_policy = true
+  policy = data.aws_iam_policy_document.static_website_policy.json
+
+  acl = "private"
 
   versioning = {
-    status     = false
+    status     = true
+    mfa_delete = false
+  }
+
+  logging = {
+    target_bucket = module.log_bucket.s3_bucket_id
+    target_prefix = "log/"
   }
 
   server_side_encryption_configuration = {
@@ -24,18 +48,10 @@ module "site_bucket" {
       }
     }
   }
-}
 
-
-resource "aws_s3_bucket_website_configuration" "website_config" {
-  bucket = module.site_bucket.s3_bucket_id
-
-  index_document {
-    suffix = "index.html"
-  }
-
-  error_document {
-    key = "error.html"
+  website = {
+    index_document = "index.html"
+    error_document = "error.html"
   }
 }
 
@@ -43,7 +59,7 @@ resource "aws_s3_bucket_website_configuration" "website_config" {
 resource "aws_s3_object" "data" {
   for_each = { for file in local.file_with_type : "${file.file_name}.${file.mime}" => file }
 
-  bucket = module.site_bucket.s3_bucket_id
+  bucket = module.website_bucket.s3_bucket_id
   key    = each.value.file_name
 
   source       = "${var.src}/${each.value.file_name}"

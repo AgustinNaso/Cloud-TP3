@@ -1,4 +1,6 @@
 locals {
+  bucket_name = "static-website-${random_pet.this.id}"
+
   filetypes = {
     "html" : "text/html",
     "jpg" : "image/jpg",
