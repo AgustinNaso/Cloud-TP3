@@ -2,8 +2,6 @@ resource "random_pet" "this" {
   length = 4
 }
 
-#TODO: WWW BUCKET?
-
 module "log_bucket" {
   source = "terraform-aws-modules/s3-bucket/aws"
 
@@ -11,8 +9,24 @@ module "log_bucket" {
   acl           = "log-delivery-write"
   force_destroy = true
 
-  attach_deny_insecure_transport_policy = true #DENY NON SSL TRANSPORT
-  attach_require_latest_tls_policy      = true #ALLOW ONLY NEWEST TLS TRANSPORT
+  attach_deny_insecure_transport_policy = true #TODO DENY NON SSL TRANSPORT
+  attach_require_latest_tls_policy      = true #TODO ALLOW ONLY NEWEST TLS TRANSPORT
+}
+
+
+module "www_website_bucket" {
+  source = "terraform-aws-modules/s3-bucket/aws"
+
+  bucket_prefix = "www"
+  acl           = "public-read"
+  force_destroy = true
+
+  website = {
+    redirect_all_requests_to = "${module.website_bucket.s3_bucket_bucket_regional_domain_name}"
+  }
+
+  attach_policy = true
+  policy = data.aws_iam_policy_document.static_website_policy.json
 }
 
 
