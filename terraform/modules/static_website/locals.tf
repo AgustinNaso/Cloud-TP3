@@ -1,6 +1,4 @@
 locals {
-  bucket_name = "static-website-${random_pet.this.id}"
-
   filetypes = {
     "html" : "text/html",
     "jpg" : "image/jpg",
@@ -13,11 +11,16 @@ locals {
 
   file_with_type = flatten([
     for type, mime in local.filetypes : [
-      for key, value in fileset("${var.src}/", "**/*.${type}") : {
+      for key, value in fileset("${var.static_resources}/", "**/*.${type}") : {
         mime = mime
         file_name = value
       }
     ]
   ])
+
+  static_resource_paths = {
+    for file in local.file_with_type :
+    file.file_name => "${var.static_resources}/${file.file_name}"
+  }
   
 }

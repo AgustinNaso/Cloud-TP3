@@ -7,6 +7,9 @@ data "aws_iam_policy_document" "static_website_policy" {
       type        = "AWS"
       identifiers = var.bucket_access_OAI
     }
-    resources = ["arn:aws:s3:::${local.bucket_name}/*"]
+    resources = [
+      module.website_bucket.s3_bucket_arn, 
+      "${module.website_bucket.s3_bucket_arn}/*"
+    ]
   }
 }

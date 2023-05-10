@@ -1,7 +1,3 @@
-resource "random_pet" "this" {
-  length = 4
-}
-
 module "log_bucket" {
   source = "terraform-aws-modules/s3-bucket/aws"
 
@@ -18,7 +14,7 @@ module "www_website_bucket" {
   source = "terraform-aws-modules/s3-bucket/aws"
 
   bucket_prefix = "www"
-  acl           = "public-read"
+  acl           = "private"
   force_destroy = true
 
   website = {
@@ -76,7 +72,7 @@ resource "aws_s3_object" "data" {
   bucket = module.website_bucket.s3_bucket_id
   key    = each.value.file_name
 
-  source       = "${var.src}/${each.value.file_name}"
-  etag         = filemd5("${var.src}/${each.value.file_name}")
+  source       = local.static_resource_paths[each.value.file_name]
+  etag         = filemd5(local.static_resource_paths[each.value.file_name])
   content_type = each.value.mime
 }

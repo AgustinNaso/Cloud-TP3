@@ -8,3 +8,4 @@ module "static_website" {
     aws = aws.aws
   }
 }
+
