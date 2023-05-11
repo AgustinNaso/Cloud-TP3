@@ -4,26 +4,24 @@ terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = ">= 4.16.0"
+      version = ">= 4.40.0" #TODO ACA HAY QUE USAR ALGUNA VERSION ESPECIFICA??
     }
   }
 }
 
 provider "aws" {
-    # alias = "aws" 
-
     region = var.aws_region
-    # shared_credentials_files = ["~/.aws/credentials"]
-    # shared_config_files     = ["~/.aws/config"]
-    # profile = "default"
+    shared_credentials_files = ["~/.aws/credentials"]
+    shared_config_files     = ["~/.aws/config"]
+    profile = "default"
 
-    # default_tags {
-    #     tags = {
-    #     author     = "Grupo 3"
-    #     version    = 1
-    #     university = "ITBA"
-    #     subject    = "Cloud Computing"
-    #     created-by = "terraform"
-    #     }
-    # }
+    default_tags {
+        tags = {
+        author     = "Grupo 3"
+        version    = 1
+        university = "ITBA"
+        subject    = "Cloud Computing"
+        created-by = "terraform"
+        }
+    }
 }

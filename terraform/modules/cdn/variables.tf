@@ -10,7 +10,12 @@ variable "aliases" {
 }
 
 variable "domain_name" {
-  description  = "CDN origin domain name"
+  description  = "Domain name"
+  type         = string
+}
+
+variable "bucket_domain_name" {
+  description  = "Domain name"
   type         = string
 }
 

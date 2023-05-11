@@ -18,7 +18,9 @@ module "www_website_bucket" {
   force_destroy = true
 
   website = {
-    redirect_all_requests_to = "${module.website_bucket.s3_bucket_bucket_regional_domain_name}"
+    redirect_all_requests_to = {
+      host_name = module.website_bucket.s3_bucket_bucket_regional_domain_name
+    }
   }
 
   attach_policy = true

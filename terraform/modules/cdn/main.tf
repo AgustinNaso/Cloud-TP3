@@ -5,7 +5,7 @@ resource "aws_cloudfront_origin_access_identity" "static_website_OAI" {
 resource "aws_cloudfront_distribution" "s3_distribution" {
     #TODO API
     origin {
-        domain_name              = var.domain_name
+        domain_name              = var.bucket_domain_name
         origin_id                = var.bucket_origin_id
 
         s3_origin_config {
