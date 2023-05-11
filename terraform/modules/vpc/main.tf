@@ -8,10 +8,6 @@ resource "aws_vpc" "main_vpc" {
     }
 }
 
-data "aws_availability_zones" "available" {
-  state = "available"
-}
-
 resource "aws_subnet" "private_subnet" {
   vpc_id            = aws_vpc.main_vpc.id
   count             = var.vpc_az_count

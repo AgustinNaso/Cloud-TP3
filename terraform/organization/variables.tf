@@ -3,3 +3,9 @@ variable "aws_region" {
   type         = string
   default      = "us-east-1"
 }
+
+variable "website_domain" {
+  description  = "Website domain"
+  type         = string
+  default      = "smartpager.com"
+}

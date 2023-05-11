@@ -11,7 +11,7 @@ variable "vpc_network_cidr" {
 }
 
 variable "vpc_az_count" {
-  description = "Quantity of zones"
+  description = "Quantity of availability zones - 1 subnet per AZ"
   type        = number
   default     = 2
 }
