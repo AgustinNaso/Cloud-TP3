@@ -52,6 +52,8 @@ module "website_bucket" {
   ignore_public_acls      = true
   restrict_public_buckets = true
 
+  bucket_prefix = "smartpager"
+
   attach_policy = true
   policy = data.aws_iam_policy_document.static_website_policy.json
 
