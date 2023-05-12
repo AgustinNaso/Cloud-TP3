@@ -1,4 +1,4 @@
-#https://www.youtube.com/watch?v=RRdYFwlCHic
+#https://www.youtube.com/watch?v=RRdYFwlCHic TODO VOLAR ESTO
 #pedir el certificado
 resource "aws_acm_certificate" "acm_certificate" {
   domain_name               = var.domain_name

@@ -90,8 +90,11 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
         Name = "G3 CDN"
     }
 
-    #TODO CERTIFICADOS
     viewer_certificate {
-        cloudfront_default_certificate = true
+        cloudfront_default_certificate = length(var.aliases) == 0
+
+        acm_certificate_arn      = var.certificate_arn
+        minimum_protocol_version = length(var.aliases) > 0 ? "TLSv1.2_2021" : null
+        ssl_support_method       = length(var.aliases) > 0 ? "sni-only" : null
     }
 }
