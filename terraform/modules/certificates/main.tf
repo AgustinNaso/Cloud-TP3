@@ -1,30 +1,35 @@
-module "acm" {
-  source  = "terraform-aws-modules/acm/aws"
-  version = "~> 4.0"
-
-  domain_name  = var.domain_name
-  validation_method = "DNS"
-
+#https://www.youtube.com/watch?v=RRdYFwlCHic
+#pedir el certificado
+resource "aws_acm_certificate" "acm_certificate" {
+  domain_name               = var.domain_name
   subject_alternative_names = ["www.${var.domain_name}"]
+  validation_method         = "DNS"
 
-  wait_for_validation = true
-
-  tags = {
-    Name = var.domain_name
+   lifecycle {
+    create_before_destroy = true
   }
-  create_route53_records  = false
-  validation_record_fqdns = module.route53_records.validation_route53_record_fqdns
 }
 
-module "route53_records" {
-  source  = "terraform-aws-modules/acm/aws"
-  version = "~> 4.0"
+#record set de r53 para validacion de dominio
+resource "aws_route53_record" "route53_record" {
+  for_each = {
+    for dvo in aws_acm_certificate.acm_certificate.domain_validation_options : dvo.domain_name => {
+      name    = dvo.resource_record_name
+      record  = dvo.resource_record_value
+      type    = dvo.resource_record_type
+    }
+  }
 
-  create_certificate          = false
-  create_route53_records_only = true
+  allow_overwrite = true
+  name            = each.value.name
+  records         = [each.value.record]
+  ttl             = 60
+  type            = each.value.type
+  zone_id         = data.aws_route53_zone.main.zone_id
+}
 
-  distinct_domain_names = module.acm.distinct_domain_names
-
-  zone_id = data.aws_route53_zone.main.id
-  acm_certificate_domain_validation_options = module.acm.acm_certificate_domain_validation_options
+#validar certificado acm
+resource "aws_acm_certificate_validation" "acm_certificate_validation" {
+  certificate_arn         = aws_acm_certificate.acm_certificate.arn
+  validation_record_fqdns = [for record in aws_route53_record.route53_record : record.fqdn]
 }
