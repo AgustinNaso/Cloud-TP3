@@ -1,4 +1,4 @@
-# importante
+# importante TODO VER ESTO
 # A partir de abril de 2023, Amazon S3 cambiará la configuración predeterminada de Bloqueo de acceso público
 # de S3 y Object Ownership (ACL desactivadas) para todos los buckets nuevos de S3. Para los nuevos buckets 
 # creados después de esta actualización, se habilitarán todas las configuraciones de Bloqueo de acceso 

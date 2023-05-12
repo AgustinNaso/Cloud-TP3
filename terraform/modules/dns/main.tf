@@ -20,4 +20,5 @@ resource "aws_route53_record" "www" {
   depends_on = [
     aws_route53_record.main
   ]
+
 }

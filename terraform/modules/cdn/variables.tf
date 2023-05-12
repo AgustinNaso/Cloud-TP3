@@ -23,3 +23,8 @@ variable "bucket_origin_id" {
   description  = "CDN origin bucket id"
   type         = string
 }
+
+variable "certificate_arn" {
+  description  = "Certificate ARN"
+  type         = string
+}
