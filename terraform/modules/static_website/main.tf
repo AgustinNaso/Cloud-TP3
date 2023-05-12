@@ -4,6 +4,8 @@ module "log_bucket" {
   bucket_prefix = "logs"
   acl           = "log-delivery-write"
   force_destroy = true
+  control_object_ownership = true
+  object_ownership         = "ObjectWriter"
 
   attach_deny_insecure_transport_policy = true #TODO DENY NON SSL TRANSPORT
   attach_require_latest_tls_policy      = true #TODO ALLOW ONLY NEWEST TLS TRANSPORT
@@ -15,6 +17,8 @@ module "www_website_bucket" {
 
   bucket_prefix = "www"
   acl           = "private"
+  control_object_ownership = true
+  object_ownership         = "ObjectWriter"
   force_destroy = true
 
   website = {
@@ -42,6 +46,8 @@ module "website_bucket" {
   policy = data.aws_iam_policy_document.static_website_policy.json
 
   acl = "private"
+  control_object_ownership = true
+  object_ownership         = "ObjectWriter"
 
   versioning = {
     status     = true
