@@ -21,4 +21,10 @@ resource "aws_route53_record" "www" {
   depends_on = [
     aws_route53_record.main
   ]
+
+  alias {
+    name                   = aws_route53_record.main.name
+    zone_id                = data.aws_route53_zone.main.zone_id
+    evaluate_target_health = false
+  }
 }
