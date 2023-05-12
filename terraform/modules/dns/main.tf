@@ -14,17 +14,10 @@ resource "aws_route53_record" "www" {
   zone_id = data.aws_route53_zone.main.zone_id
   name    = "www.${var.domain_name}"
   type    = "CNAME"
-  ttl     = 900
 
   records = ["${var.domain_name}"]
 
   depends_on = [
     aws_route53_record.main
   ]
-
-  alias {
-    name                   = aws_route53_record.main.name
-    zone_id                = data.aws_route53_zone.main.zone_id
-    evaluate_target_health = false
-  }
 }

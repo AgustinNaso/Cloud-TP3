@@ -37,8 +37,8 @@ module "www_website_bucket" {
     }
   }
 
-  attach_policy = true
-  policy = data.aws_iam_policy_document.static_website_policy.json
+  # attach_policy = true
+  # policy = data.aws_iam_policy_document.static_website_policy.json
 }
 
 
