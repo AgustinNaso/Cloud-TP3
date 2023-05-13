@@ -14,7 +14,7 @@ locals {
       function_name = "test"
       method        = "GET"
       handler       = "lambda_test.main"
-      path          = "/test"
+      path          = "test"
     }
   }
 }
