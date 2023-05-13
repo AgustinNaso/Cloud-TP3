@@ -10,15 +10,15 @@ resource "aws_route53_record" "main" {
   }
 }
 
-resource "aws_route53_record" "www" {
-  zone_id = data.aws_route53_zone.main.zone_id
-  name    = "www.${var.domain_name}"
-  type    = "CNAME"
+# resource "aws_route53_record" "www" {
+#   zone_id = data.aws_route53_zone.main.zone_id
+#   name    = "www.${var.domain_name}"
+#   type    = "CNAME"
 
-  records = ["${var.domain_name}"]
+#   records = ["${var.domain_name}"]
 
-  depends_on = [
-    aws_route53_record.main
-  ]
+#   depends_on = [
+#     aws_route53_record.main
+#   ]
 
-}
+# }
