@@ -12,7 +12,7 @@ module "vpc" {
 
   tags = {
     Name = var.vpc_name
-    Private_Subnets = join(", ", local.azs)
+    Availability-Zones = join(", ", local.azs)
   }
 
 }
