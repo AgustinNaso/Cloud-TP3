@@ -1,7 +1,7 @@
 variable "vpc_name" {
   description  = "Name tag value"
   type         = string
-  default      = "Main-VPC-G3"
+  default      = "Main-VPC-SMARTPAGER"
 }
 
 variable "vpc_network_cidr" {
