@@ -13,10 +13,10 @@ resource "aws_api_gateway_deployment" "this" {
   //La idea de esto es q cuando cambia una lambda se redeploye el api gw
   # triggers = {
   #   //en vez de {} poner hash de las lambda
-  #   redeployment = sha1(jsonencode("{}"))
+    # redeployment = sha1(jsonencode("{}"))
   # }
 
-  depends_on = [  ]
+  # depends_on = [  ] TODO PARA QUE VUELA?
 
   lifecycle {
     create_before_destroy = true
