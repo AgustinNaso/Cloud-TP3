@@ -1,21 +1,18 @@
-resource "aws_vpc" "main_vpc" {
-    cidr_block = var.vpc_network_cidr
-    enable_dns_support   = "true" 
-    enable_dns_hostnames = "true" 
+module "vpc" {
+  source = "terraform-aws-modules/vpc/aws"
 
-    tags = {
-        Name = var.vpc_name
-    }
-}
+  name = var.vpc_name
+  cidr = var.vpc_network_cidr
 
-resource "aws_subnet" "private_subnet" {
-  vpc_id            = aws_vpc.main_vpc.id
-  count             = var.vpc_az_count
-  cidr_block        = cidrsubnet(aws_vpc.main_vpc.cidr_block, 8, count.index)
-  availability_zone = data.aws_availability_zones.available.names[count.index]
+  azs             = local.azs
+  private_subnets = [for k, v in local.azs : cidrsubnet(var.vpc_network_cidr, 8, k)]
 
+  enable_dns_support   = true
+  enable_dns_hostnames = true
 
   tags = {
-      Name = "private_subnet_${count.index}"
+    Name = var.vpc_name
+    Private_Subnets = join(", ", local.azs)
   }
+
 }
