@@ -1,3 +1,5 @@
+##TODO chequear si esta bien q este modulo se llame lambda
+
 resource "aws_lambda_function" "this" {
   # If the file is not in the current working directory you will need to include a
   # path.module in the filename.
