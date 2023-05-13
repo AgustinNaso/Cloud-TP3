@@ -15,12 +15,22 @@ variable "domain_name" {
 }
 
 variable "bucket_regional_domain_name" {
-  description  = "Domain name"
+  description  = "Static site bucket regional domain name"
   type         = string
 }
 
 variable "bucket_origin_id" {
   description  = "CDN origin bucket id"
+  type         = string
+}
+
+variable "api_domain_name" {
+  description  = "API REST DOMAIN name"
+  type         = string
+}
+
+variable "api_origin_id" {
+  description  = "API REST origin id"
   type         = string
 }
 

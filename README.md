@@ -1,5 +1,5 @@
-# Cloud-TP3
-Trabajo Practico nro. 3 para la materia Cloud Computing
+# Cloud-TP3-Terraform
+Trabajo Practico nro. 3 para la materia Cloud Computing 2023 1C - G3
 
 
 1. Uso de módulos (uno custom-made y uno externo).

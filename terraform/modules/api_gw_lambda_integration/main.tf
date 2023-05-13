@@ -57,10 +57,8 @@ resource "aws_lambda_permission" "api_gw_lambda" {
     function_name = var.lambda_info.function_name
     principal     = "apigateway.amazonaws.com"
     source_arn    = "${var.execution_arn}/*/${aws_api_gateway_method.this.http_method}${aws_api_gateway_resource.this.path}"
-    # source_arn = "arn:aws:execute-api:${var.region}:${var.api_gw_id}/*/${var.lambda_info.method}$
-    # {aws_api_gateway_resource.this.path}"
-
-      depends_on = [
-    module.lambda
-  ]
+    
+    depends_on = [
+      module.lambda
+    ]
 }

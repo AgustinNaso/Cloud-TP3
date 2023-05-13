@@ -11,10 +11,10 @@ resource "aws_api_gateway_deployment" "this" {
   rest_api_id = aws_api_gateway_rest_api.this.id
 
   //La idea de esto es q cuando cambia una lambda se redeploye el api gw
-  triggers = {
-    //en vez de {} poner hash de las lambda
-    redeployment = sha1(jsonencode("{}"))
-  }
+  # triggers = {
+  #   //en vez de {} poner hash de las lambda
+  #   redeployment = sha1(jsonencode("{}"))
+  # }
 
   depends_on = [  ]
 

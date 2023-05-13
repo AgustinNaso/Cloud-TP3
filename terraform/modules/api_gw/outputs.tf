@@ -1,6 +1,6 @@
 output "domain_name" {
   description = "API gateway domain name"
-  value       = join(".", [aws_api_gateway_rest_api.this.id, "G3-api", var.aws_region, "amazonaws.com"])
+  value       = join(".", [aws_api_gateway_rest_api.this.id, "G3-API", var.aws_region, "amazonaws.com"])
 }
 
 output "id" {
