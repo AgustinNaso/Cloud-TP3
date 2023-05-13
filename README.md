@@ -44,3 +44,14 @@ EXPLICAR PORQ LOS USAMOS, QUE VENTAJAS NOS DA, QUE GANAMOS, NOO PONER LA DESCRIP
 USEMOS MAS, SI USAMOS SOLO LAS COSAS QUE DIERON ELLOS NO NOS DAN LOS PUNTOS
 LO MISMO CON EL MODULO EXTERNO DE S3, HAY QUE USAR ALGUN OTRO MAS
 
+## Rúbrica
+
+|  Alumno                |  Legajo  |  Participación  |
+|------------------------|----------|-----------------|
+|  Gastón De Schant      |  60755   |       25%       |
+|  Federico Gustavo Rojas|  60239   |       25%       |
+|  Brittany Lin          |  60355   |       25%       |
+|  Agustín Naso          |  60065   |       25%       |
+
+
+
