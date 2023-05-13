@@ -12,3 +12,16 @@ variable "account_id" {
     description = "Account id to be used for lambda function role"
     type        = string
 }
+
+variable "api_gw_id" {
+  type = string
+}
+
+variable "api_gw_resource_id" {
+  type = string
+}
+
+variable "region" {
+  type = string
+  default = "us-east-1"
+}

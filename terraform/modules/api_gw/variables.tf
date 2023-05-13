@@ -1,4 +1,4 @@
-variable "endpoint_path" {
+variable "aws_region" {
     type = string
-    default = "test_path"
+    default = "us-east-1"
 }
