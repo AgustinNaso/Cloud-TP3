@@ -7,5 +7,5 @@ variable "aws_region" {
 variable "website_domain" {
   description  = "Website domain"
   type         = string
-  default      = "smartpager.com"
+  default      = "smartpager.com.ar"
 }

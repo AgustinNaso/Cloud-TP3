@@ -25,3 +25,8 @@ variable "region" {
   type = string
   default = "us-east-1"
 }
+
+variable "execution_arn" {
+  description = "API Gateway's execution ARN"
+  type        = string
+}
