@@ -4,7 +4,7 @@ resource "aws_lambda_function" "this" {
   # filename is a .zip
   filename      = var.lambda_info.filename
   function_name = var.lambda_info.function_name
-  role          = aws_iam_role.this.arn
+  role          = "arn:aws:iam::${var.account_id}:role/LabRole"
   #function that handles the event
   handler       = var.lambda_info.handler
   runtime       = "python3.9"
