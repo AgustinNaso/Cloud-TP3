@@ -1,5 +1,4 @@
 resource "aws_api_gateway_rest_api" "this" {
-
   name = "G3-API"
 
   endpoint_configuration {

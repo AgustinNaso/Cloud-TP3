@@ -1,28 +1,27 @@
-##TODO chequear si esta bien q este modulo se llame lambda
-
-resource "aws_lambda_function" "this" {
-  # If the file is not in the current working directory you will need to include a
-  # path.module in the filename.
-  # filename is a .zip
-  filename      = var.lambda_info.filename
-  function_name = var.lambda_info.function_name
-  role          = "arn:aws:iam::${var.account_id}:role/LabRole"
-  #function that handles the event
-  handler       = var.lambda_info.handler
-  runtime       = "python3.9"
-
-  tags = {
-    name = "Lambda ${var.lambda_info.function_name}"
-  }
+data "archive_file" "this" {
+  type        = "zip"
+  source_file = local.file_name
+  output_path = local.zip_file_name
 }
 
-# resource "aws_lambda_permission" "lambda_permission" {
-#   statement_id  = "AllowExecutionFromAPIGateway"
-#   action        = "lambda:InvokeFunction"
-#   function_name = aws_lambda_function.this.function_name
-#   principal     = "apigateway.amazonaws.com"
+resource "aws_lambda_function" "this" {
+  filename      = local.zip_file_name
+  function_name = var.function_name
+  role          = "arn:aws:iam::${var.account_id}:role/LabRole"
+  #function that handles the event
+  handler       = local.handler
+  runtime       = var.runtime
 
-#   # The /* part allows invocation from any stage, method and resource path
-#   # within API Gateway.
-#   source_arn = "${var.api_gateway_execution_arn}/*/${var.lambda_info.method}${var.lambda_info.path}"
-# }
+  tags = {
+    name = "Lambda ${var.function_name}"
+  }
+
+  vpc_config {
+    subnet_ids         = var.subnet_ids
+    security_group_ids = var.security_groups
+  }
+
+  depends_on = [
+    data.archive_file.this
+  ]
+}
