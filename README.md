@@ -65,7 +65,14 @@ EXPLICAR PORQ LOS USAMOS, QUE VENTAJAS NOS DA, QUE GANAMOS, NO PONER LA DESCRIPC
 
 ## Obteniendo el certificado para: smartpager.com.ar
 
-TODO
+ - Se compro el dominio smartpager.com.ar en el sitio donweb.com
+ - Se le asiganron los NS records de la hosted zone creada en una de nuestras cuentas de AWS
+ - Se le asigno un certificado mediante ACM, levantando el mismo con terraform
+ 
+![alt text](https://github.com/AgustinNaso/Cloud-TP3/blob/main/donweb.png?raw=true)
+![alt text](https://github.com/AgustinNaso/Cloud-TP3/blob/main/certificado.png?raw=true)
+![alt text](https://github.com/AgustinNaso/Cloud-TP3/blob/main/smartpager.png?raw=true)
+
 
 ## Rúbrica
 
