@@ -40,6 +40,8 @@ TODO
 - **Lambda:** TODO
 - **API Gateway:** TODO
 
+
+
 ## Funciones
 
 - **cidrsubnet:** TODO
@@ -60,6 +62,10 @@ EXPLICAR PORQ LOS USAMOS, QUE VENTAJAS NOS DA, QUE GANAMOS, NO PONER LA DESCRIPC
 - **lifecycle:** TODO
 
 EXPLICAR PORQ LOS USAMOS, QUE VENTAJAS NOS DA, QUE GANAMOS, NO PONER LA DESCRIPCION DE QUE HACE
+
+## Obteniendo el certificado para: smartpager.com.ar
+
+TODO
 
 ## Rúbrica
 
