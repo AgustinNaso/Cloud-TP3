@@ -21,11 +21,6 @@ variable "lambda_info" {
     type        = map(string)
 }
 
-variable "region" {
-  type = string
-  default = "us-east-1"
-}
-
 variable "security_groups" {
   description = "Security Groups"
   type        = list(string)

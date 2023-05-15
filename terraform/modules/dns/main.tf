@@ -1,5 +1,5 @@
-resource "aws_route53_record" "main" {
-  zone_id = data.aws_route53_zone.main.zone_id
+resource "aws_route53_record" "this" {
+  zone_id = data.aws_route53_zone.this.zone_id
   name    = var.domain_name
   type    = "A"
 
@@ -10,15 +10,15 @@ resource "aws_route53_record" "main" {
   }
 }
 
-# resource "aws_route53_record" "www" {
-#   zone_id = data.aws_route53_zone.main.zone_id
-#   name    = "www.${var.domain_name}"
-#   type    = "CNAME"
-#   ttl     = 900
+resource "aws_route53_record" "www" {
+  zone_id = data.aws_route53_zone.this.zone_id
+  name    = "www.${var.domain_name}"
+  type    = "CNAME"
+  ttl     = 900
 
-#   records = ["${var.domain_name}"]
+  records = ["${var.domain_name}"]
 
-#   depends_on = [
-#     aws_route53_record.main
-#   ]
-# }
+  depends_on = [
+    aws_route53_record.this
+  ]
+}
