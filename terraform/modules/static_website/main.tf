@@ -1,21 +1,15 @@
-# importante TODO VER ESTO
 # A partir de abril de 2023, Amazon S3 cambiará la configuración predeterminada de Bloqueo de acceso público
 # de S3 y Object Ownership (ACL desactivadas) para todos los buckets nuevos de S3. Para los nuevos buckets 
 # creados después de esta actualización, se habilitarán todas las configuraciones de Bloqueo de acceso 
 # público de S3 y se desactivarán las listas de control de acceso (ACL) de S3. Estos valores 
 # predeterminados son las prácticas recomendadas para proteger los datos en Amazon S3. 
-# Puede ajustar esta configuración después de crear el bucket. Para obtener más información, 
-# consulte Configuración predeterminada para preguntas frecuentes de buckets de S3 nuevos y Aviso: 
-# Los cambios en la seguridad de Amazon S3 llegarán en abril de 2023 en el blog de novedades de AWS.
+# Puede ajustar esta configuración después de crear el bucket. 
 
 module "log_bucket" {
   source = "terraform-aws-modules/s3-bucket/aws"
 
   bucket_prefix = "logs"
-  # acl           = "log-delivery-write"
   force_destroy = true
-  # control_object_ownership = true
-  # object_ownership         = "ObjectWriter"
 
   attach_deny_insecure_transport_policy = true #TODO DENY NON SSL TRANSPORT
   attach_require_latest_tls_policy      = true #TODO ALLOW ONLY NEWEST TLS TRANSPORT
@@ -26,9 +20,6 @@ module "www_website_bucket" {
   source = "terraform-aws-modules/s3-bucket/aws"
 
   bucket_prefix = "www"
-  # acl           = "private"
-  # control_object_ownership = true
-  # object_ownership         = "ObjectWriter"
   force_destroy = true
 
   website = {
@@ -37,8 +28,6 @@ module "www_website_bucket" {
     }
   }
 
-  # attach_policy = true
-  # policy = data.aws_iam_policy_document.static_website_policy.json
 }
 
 
@@ -56,10 +45,6 @@ module "website_bucket" {
 
   attach_policy = true
   policy = data.aws_iam_policy_document.static_website_policy.json
-
-  # acl = "private"
-  # control_object_ownership = true
-  # object_ownership         = "ObjectWriter"
 
   versioning = {
     status     = true

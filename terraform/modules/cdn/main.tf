@@ -30,8 +30,6 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
         }
     }
 
-    # aliases = var.aliases
-
     default_cache_behavior {
         allowed_methods  = ["DELETE", "GET", "HEAD", "OPTIONS", "PATCH", "POST", "PUT"]
         cached_methods   = ["GET", "HEAD"]
@@ -90,6 +88,8 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
     tags = {
         Name = "G3 CDN"
     }
+
+    # aliases = var.aliases
 
     viewer_certificate {
         cloudfront_default_certificate = true
