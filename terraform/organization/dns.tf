@@ -1,5 +1,3 @@
-#TODO: Route53 hosted zone!
-
 module "dns" {
   source            = "../modules/dns"
 

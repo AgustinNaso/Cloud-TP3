@@ -6,5 +6,5 @@ module "cdn" {
   bucket_regional_domain_name = module.static_website.website_bucket_regional_domain_name
   api_domain_name = module.api_gw.domain_name
   api_origin_id = module.api_gw.id
-  # certificate_arn    = module.certificates.certificate_arn
+  certificate_arn    = module.certificates.certificate_arn
 }

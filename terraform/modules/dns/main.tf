@@ -1,4 +1,4 @@
-resource "aws_route53_record" "this" {
+resource "aws_route53_record" "domain_record" {
   zone_id = data.aws_route53_zone.this.zone_id
   name    = var.domain_name
   type    = "A"
@@ -19,6 +19,6 @@ resource "aws_route53_record" "www" {
   records = ["${var.domain_name}"]
 
   depends_on = [
-    aws_route53_record.this
+    aws_route53_record.domain_record
   ]
 }
