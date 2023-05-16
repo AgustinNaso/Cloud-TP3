@@ -25,7 +25,7 @@ variable "bucket_origin_id" {
 }
 
 variable "api_domain_name" {
-  description  = "API REST DOMAIN name"
+  description  = "API REST domain name"
   type         = string
 }
 

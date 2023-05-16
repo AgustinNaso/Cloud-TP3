@@ -4,6 +4,6 @@ output "static_website_OAI" {
 }
 
 output "cloudfront_distribution" {
-  description = "The cloudfront distribution for the deployment"
+  description = "Cloudfront distribution for deployment"
   value       = aws_cloudfront_distribution.s3_distribution
 }
