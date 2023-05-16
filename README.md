@@ -17,11 +17,11 @@ Módulo para la configuración de la CDN: Cloudfront. Se definen los orígenes d
 
 ### Módulo api_gw 
 
-TODO
+Módulo para levantar el API Gateway que se encarga de exponer las funcionalidades de las distintas lambdas creadas a traves de endpoints REST. Recibe los hashes de los recursos que utilizan los endpoints attacheados para que, en el caso de que cambien, se redeploye. Ademas, esta configurado para que en caso de redeployar primero se levante la nueva version y luego se borre la vieja, para llevar el downtime al minimo.
 
 ### Módulo api_gw_lambda_integration
     
-TODO
+Módulo que se encarga de instanciar y attachear los entpoints que llaman a las lambdas al API Gateway.
 
 ### Modulo static_website
 
@@ -61,11 +61,11 @@ TODO PONER FORO ARQUITECTURA
 
 - **cidrsubnet:** junto con un for, por cada AZ que se utilizará (calculado con el slice), se crea una subred privada utilizando el CIDR de la VPC y la posición en el listado de AZs. De esta forma en un solo ciclo se crea prográmaticamente segun las variables el CIDR de cada subred solicitada. Utilizado en el módulo VPC.
 
-- **join:** TODO
+- **join:** TODO: Es un join de strings basico. Que mas se puede poner?
 
 - **filemd5:** utilizado en el módulo static_website para obtener un hash del objeto a subir y asignarlo como su etag, valor utilizado para caching condicional. Si cambia el objeto cambiará su hash, por lo que su etag será distinto, indicando que la cache debe ser actualizada.
 
-- **sha1:** TODO
+- **sha1:** utilizado en el módulo api_gw_lambda_integration para generar el hash de los recursos  attacheados al API Gateway para cada lambda con el fin poder redeployarlo en caso de que alguno de estos cambie. 
 
 - **jsonencode:** TODO
 
@@ -78,7 +78,7 @@ TODO PONER FORO ARQUITECTURA
 
 - **for_each:** Se utilizó este argumento para iterar por listas, como por ejemplo en la creacion de los CIDR para cada subred o en la subida de cada archivo en el directorio de recursos.
 
-- **depends_on:** Se utilizó este argumento para el manejo de dependencias, como por ejemplo el record www respecto al record del dominio base en route 53, TODO NASO PONE PARA QUE LO USASTE EN API GW
+- **depends_on:** Se utilizó este argumento para el manejo de dependencias, como por ejemplo el record www respecto al record del dominio base en route 53, y en el api gateway para casos como la creacion de permisos de una lambda y la lambda en si.
 
 - **lifecycle:** se utilizó este argumento para definir que recursos como el certificado en ACM o el API gateway se creen antes de destruirse (el default es que se destruyan primero y luego se creen), para prevenir asi posibles errores al recrear recursos que los referencian.
 
