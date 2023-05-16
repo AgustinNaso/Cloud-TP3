@@ -1,5 +1,6 @@
 module "api_gw" {
     source = "../modules/api_gw"
+    lambda_api_gw_resources_hash_list = [for resource_hash in module.lambda : lambda.lambda_api_gw_config_hash]
 }
 
 module "lambda" {

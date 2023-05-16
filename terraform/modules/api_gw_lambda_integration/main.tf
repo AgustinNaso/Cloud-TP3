@@ -43,15 +43,13 @@ resource "aws_api_gateway_integration" "this" {
   uri                     = module.lambda.invoke_arn
 }
 
-# PATH /path 200 RESPONSE
 resource "aws_api_gateway_method_response" "this" {
   rest_api_id = var.api_gw_id
   resource_id = aws_api_gateway_resource.this.id
   http_method = aws_api_gateway_method.this.http_method
-  status_code = "200"
+  status_code = var.lambda_info.status_code
 }
 
-# PATH /path - GET method - 200 RESPONSE INTEGRATION
 resource "aws_api_gateway_integration_response" "this" {
   rest_api_id = var.api_gw_id
   resource_id = aws_api_gateway_resource.this.id
