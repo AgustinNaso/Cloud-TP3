@@ -9,6 +9,7 @@ locals {
       function_name = "test"
       http_method   = "GET"
       path_part = "test"
+      status_code = 200
     }
   }
 
