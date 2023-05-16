@@ -1,38 +1,38 @@
 # Cloud-TP3-Terraform: SMARTPAGER
-Trabajo Practico nro. 3 para la materia Cloud Computing 2023 1C - G3
+Trabajo Práctico nro. 3 para la materia Cloud Computing 2023 1C - G3
 
 ## Módulos
 
 ### Módulo certificates
 
-Módulo utilizado para la generación de un certificado SSL/TLS para el dominio. Se solicita el certificado y se generan los registros necesarios en route 53, ya que el modo de validación es por DNS.
+Módulo utilizado para la generación de un certificado SSL/TLS para el dominio. Se solicita el certificado y se generan los registros necesarios en Route 53, ya que el modo de validación es por DNS.
     
 ### Módulo dns
 
-Módulo para crear los registros en route 53 que exponen a la CDN.
+Módulo para crear los registros en Route 53 que exponen a la CDN.
 
 ### Módulo cdn
 
-Módulo para la configuración de la CDN: Cloudfront. Se definen los orígenes de datos: el sitio web estático (S3) y el API Gateway. También se definen politicas de caching y routeo de tráfico.
+Módulo para la configuración de la CDN: CloudFront. Se definen los orígenes de datos: el sitio web estático (S3) y el API Gateway. También se definen políticas de caching y enrutamiento de tráfico.
 
 ### Módulo api_gw 
 
-Módulo para levantar el API Gateway que se encarga de exponer las funcionalidades de las distintas lambdas creadas a traves de endpoints REST. Recibe los hashes de los recursos que utilizan los endpoints attacheados para que, en el caso de que cambien, se redeploye. Ademas, esta configurado para que en caso de redeployar primero se levante la nueva version y luego se borre la vieja, para llevar el downtime al minimo.
+Módulo para levantar el API Gateway que se encarga de exponer las funcionalidades de las distintas lambdas creadas a través de endpoints REST. Recibe los hashes de los recursos que utilizan los endpoints attachéados para que, en el caso de que cambien, se redeploye. Además, está configurado para que en caso de redeployar primero se levante la nueva versión y luego se borre la vieja, para llevar el tiempo de inactividad al mínimo.
 
 ### Módulo api_gw_lambda_integration
     
-Módulo que se encarga de instanciar y attachear los entpoints que llaman a las lambdas al API Gateway.
+Módulo que se encarga de instanciar y attachear los endpoints que llaman a las lambdas al API Gateway.
 
-### Modulo static_website
+### Módulo static_website
 
 Módulo de configuración del sitio estático. Se utilizan 3 buckets en S3: 
 www -> smartpager.com.ar -> logs
 
-Los buckets son privados, utilizando la configuración determinada de bloqueo de accceso público de S3, que a partir de abril de 2023 Amazon aplica a todo bucket nuevo. Estos valores predeterminados son las prácticas recomendadas por Amazon para proteger los datos en S3.
+Los buckets son privados, utilizando la configuración determinada de bloqueo de acceso público de S3, que a partir de abril de 2023 Amazon aplica a todo bucket nuevo. Estos valores predeterminados son las prácticas recomendadas por Amazon para proteger los datos en S3.
 
-Se congiguro la definición de los buckets, junto a la subida de archivos. 
+Se configuro la definición de los buckets, junto con la subida de archivos. 
 
-El sitio estático es únicamente accedido mediante la CDN, que accede al sitio estático a través del bucket www, que redirige los pedidos al bucket smartpager.com.ar que tiene los objetos del sitio. Para esto se utiliza el listado de origin access identity, dandole permiso de acceso a la CDN.
+El sitio estático es únicamente accedido mediante la CDN, que accede al sitio estático a través del bucket www, que a su vez redirige los pedidos al bucket smartpager.com.ar que contiene los objetos del sitio. Para esto se utiliza el listado de origin access identity, dándole permiso de acceso a la CDN.
 
 Para subir los archivos, el módulo recorre todos los archivos dentro de un path especificado y los sube a S3 con su MIME type correspondiente.
     
@@ -40,17 +40,18 @@ Para subir los archivos, el módulo recorre todos los archivos dentro de un path
 
 El módulo se utiliza para definir los componentes de networking: VPC y subredes.
 
-Se especifica un CIDR para la VPC, y se cren subredes en distintas Availability Zones teniendo en cuenta el mismo.
+Se especifica un CIDR para la VPC, y se crean subredes en distintas Availability Zones teniendo en cuenta el mismo.
 
 
 ## Componentes
 
-- **Route53 + ACM:** Implementados en módulos dns y certificates propios.
-- **S3 - frontend:** Módulo static_website, utilizamos el módulo externo: https://registry.terraform.io/modules/terraform-aws-modules/vpc/aws/latest.
-- **Cloudfront:** Implementado en módulo cdn propio.
-- **Networking (VPC + SUBNETS):** Módulo vpc, utilizamos el módulo externo: https://registry.terraform.io/modules/terraform-aws-modules/s3-bucket/aws/latest.
+- **Route53 + ACM:** Implementados en los módulos dns y certificates respectivamente.
+- **S3 - frontend:** Módulo static_website, utilizamos el módulo externo: [terraform-aws-modules/vpc/aws](https://registry.terraform.io/modules/terraform-aws-modules/vpc/aws/latest).
+- **CloudFront:** Implementado en el módulo cdn propio.
+- **Networking (VPC + SUBNETS):** Módulo vpc, utilizamos el módulo externo: [terraform-aws-modules/s3]
+ https://registry.terraform.io/modules/terraform-aws-modules/s3-bucket/aws/latest.
 - **Lambda:** TODO
-- **API Gateway:** TODO
+- **API Gateway:** Implementado en módulos api_gw y api_gw_lambda_integration, ambos propios.
 
 TODO PONER FORO ARQUITECTURA
 
