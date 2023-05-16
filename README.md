@@ -46,11 +46,16 @@ Se especifica un CIDR para la VPC, y se crean subredes en distintas Availability
 ## Componentes
 
 - **Route53 + ACM:** Implementados en los módulos dns y certificates respectivamente.
-- **S3 - frontend:** Módulo static_website, utilizamos el módulo externo: [terraform-aws-modules/vpc/aws](https://registry.terraform.io/modules/terraform-aws-modules/vpc/aws/latest).
+
+- **S3 - frontend:** Módulo static_website, utilizamos el módulo externo: 
+[terraform-aws-modules/vpc/aws](https://registry.terraform.io/modules/terraform-aws-modules/vpc/aws/latest).
+
 - **CloudFront:** Implementado en el módulo cdn propio.
-- **Networking (VPC + SUBNETS):** Módulo vpc, utilizamos el módulo externo: [terraform-aws-modules/s3]
- https://registry.terraform.io/modules/terraform-aws-modules/s3-bucket/aws/latest.
-- **Lambda:** TODO
+
+- **Networking (VPC + SUBNETS):** Módulo vpc, utilizamos el módulo externo: [terraform-aws-modules/s3](https://registry.terraform.io/modules/terraform-aws-modules/s3-bucket/aws/latest).
+ 
+- **Lambda:** Implementado con módulo propio api_gw_lambda_integration, implementamos las siguientes funcionalidades: TODO
+
 - **API Gateway:** Implementado en módulos api_gw y api_gw_lambda_integration, ambos propios.
 
 TODO PONER FORO ARQUITECTURA
@@ -62,13 +67,9 @@ TODO PONER FORO ARQUITECTURA
 
 - **cidrsubnet:** junto con un for, por cada AZ que se utilizará (calculado con el slice), se crea una subred privada utilizando el CIDR de la VPC y la posición en el listado de AZs. De esta forma en un solo ciclo se crea prográmaticamente segun las variables el CIDR de cada subred solicitada. Utilizado en el módulo VPC.
 
-- **join:** TODO: Es un join de strings basico. Que mas se puede poner?
-
 - **filemd5:** utilizado en el módulo static_website para obtener un hash del objeto a subir y asignarlo como su etag, valor utilizado para caching condicional. Si cambia el objeto cambiará su hash, por lo que su etag será distinto, indicando que la cache debe ser actualizada.
 
 - **sha1:** utilizado en el módulo api_gw_lambda_integration para generar el hash de los recursos  attacheados al API Gateway para cada lambda con el fin poder redeployarlo en caso de que alguno de estos cambie. 
-
-- **jsonencode:** TODO
 
 - **fileset:** se utiliza en el módulo static_website para recorrer el directorio de recursos para el sitio estático, obteniendo los archivos de una determinada extensión. Se utiliza con un for para iterar por todos los tipos de extensión.
 
@@ -100,8 +101,8 @@ TODO PONER FORO ARQUITECTURA
 
 ## Data mockeada
 
-
 TODO
+
 
 ## Rúbrica
 
