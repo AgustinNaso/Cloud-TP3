@@ -80,7 +80,7 @@ TODO PONER FORO ARQUITECTURA
 
 - **depends_on:** Se utilizó este argumento para el manejo de dependencias, como por ejemplo el record www respecto al record del dominio base en route 53, TODO NASO PONE PARA QUE LO USASTE EN API GW
 
-- **lifecycle:** se utilizó este argumento para definir que recursos como el certificado en ACM o el API gateway se creen antes de destruirse (el default es que se destruyan primero y luego se creen), para prevenir asi problemas de disponibilidad si hay que recrear alguno.
+- **lifecycle:** se utilizó este argumento para definir que recursos como el certificado en ACM o el API gateway se creen antes de destruirse (el default es que se destruyan primero y luego se creen), para prevenir asi posibles errores al recrear recursos que los referencian.
 
 
 ## Obteniendo el certificado para: smartpager.com.ar
