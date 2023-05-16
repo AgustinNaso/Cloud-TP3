@@ -12,10 +12,10 @@ resource "aws_acm_certificate" "this" {
 #record set de r53 para validacion de dominio
 resource "aws_route53_record" "this" {
   for_each = {
-    for dvo in aws_acm_certificate.this.domain_validation_options : dvo.domain_name => {
-      name    = dvo.resource_record_name
-      record  = dvo.resource_record_value
-      type    = dvo.resource_record_type
+    for domain_validation_object in aws_acm_certificate.this.domain_validation_options : domain_validation_object.domain_name => {
+      name    = domain_validation_object.resource_record_name
+      record  = domain_validation_object.resource_record_value
+      type    = domain_validation_object.resource_record_type
     }
   }
 
