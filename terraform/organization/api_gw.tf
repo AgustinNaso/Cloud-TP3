@@ -1,9 +1,9 @@
 module "api_gw" {
     source = "../modules/api_gw"
-    lambda_api_gw_resources_hash_list = [for resource_hash in module.lambda : lambda.lambda_api_gw_config_hash]
+    lambda_api_gw_resources_hash_list = [for resource_hash in module.api_gw_lambda_integration : resource_hash.lambda_api_gw_config_hash]
 }
 
-module "lambda" {
+module "api_gw_lambda_integration" {
     for_each = local.lambdas
     source   = "../modules/api_gw_lambda_integration"
 
