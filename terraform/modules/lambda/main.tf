@@ -1,10 +1,3 @@
-#TODO ESTA BIEN QUE ESTE MODULO SE LLAME LAMBDA?
-data "archive_file" "this" {
-  type        = "zip"
-  source_file = local.file_name
-  output_path = local.zip_file_name
-}
-
 resource "aws_lambda_function" "this" {
   filename      = local.zip_file_name
   function_name = var.function_name

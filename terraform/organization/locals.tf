@@ -8,32 +8,32 @@ locals {
     "get_menu" = {
       function_name = "get_menu"
       http_method   = "GET"
-      path_part = "get_menu"
-      status_code = 200
+      path_part     = "get_menu"
+      status_code   = 200
     }
     "upload_menu" = {
       function_name = "upload_menu"
       http_method   = "GET"
-      path_part = "upload_menu"
-      status_code = 200
+      path_part     = "upload_menu"
+      status_code   = 200
     }
     "get_queue_size" = {
       function_name = "get_queue_size"
       http_method   = "GET"
-      path_part = "get_queue_size"
-      status_code = 200
+      path_part     = "get_queue_size"
+      status_code   = 200
     }
     "add_to_queue" = {
       function_name = "add_to_queue"
       http_method   = "POST"
-      path_part = "add_to_queue"
-      status_code = 200
+      path_part     = "add_to_queue"
+      status_code   = 200
     }
   }
 
   security_groups = {
     lambda = {
-      name = "lambda_sg",
+      name        = "lambda_sg",
       description = "Generic Lambda Security Group",
       rules = [
         {

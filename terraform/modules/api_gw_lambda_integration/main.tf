@@ -7,7 +7,6 @@ module "lambda" {
     subnet_ids      = var.subnet_ids
 }
 
-//TODO this en vez de api_gw_lambda?
 resource "aws_lambda_permission" "api_gw_lambda" {
     statement_id  = "AllowExecutionFromAPIGateway"
     action        = "lambda:InvokeFunction"

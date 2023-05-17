@@ -15,13 +15,17 @@ Módulo para crear los registros en Route 53 que exponen a la CDN.
 
 Módulo para la configuración de la CDN: CloudFront. Se definen los orígenes de datos: el sitio web estático (S3) y el API Gateway. También se definen políticas de caching y enrutamiento de tráfico.
 
+### Módulo lambda
+
+TODO BRITU
+
 ### Módulo api_gw 
 
-Módulo para levantar el API Gateway que se encarga de exponer las funcionalidades de las distintas lambdas creadas a través de endpoints REST. Recibe los hashes de los recursos que utilizan los endpoints attachéados para que, en el caso de que cambien, se redeploye. Además, está configurado para que en caso de redeployar primero se levante la nueva versión y luego se borre la vieja, para llevar el tiempo de inactividad al mínimo.
+Módulo para levantar el API Gateway que se encarga de exponer las funcionalidades de las distintas lambdas creadas a través de endpoints REST. Recibe los hashes de los recursos que utilizan los endpoints attachéados para que, en el caso de que cambien, se redeploye. Además, está configurado para que en caso de redeployar primero se levante la nueva versión y luego se borre la vieja, para llevar el tiempo de inactividad al mínimo y evitar errores.
 
 ### Módulo api_gw_lambda_integration
     
-Módulo que se encarga de instanciar y attachear los endpoints que llaman a las lambdas al API Gateway.
+Módulo que se encarga de instanciar y attachear al API Gateway los endpoints que llaman a las lambdas.
 
 ### Módulo static_website
 
@@ -54,7 +58,7 @@ Se especifica un CIDR para la VPC, y se crean subredes en distintas Availability
 
 - **Networking (VPC + SUBNETS):** Módulo vpc, utilizamos el módulo externo: [terraform-aws-modules/s3](https://registry.terraform.io/modules/terraform-aws-modules/s3-bucket/aws/latest).
  
-- **Lambda:** Implementado con módulo propio api_gw_lambda_integration, implementamos las siguientes funcionalidades: TODO
+- **Lambda:** Implementado con módulos propios api_gw_lambda_integration y lambda, implementamos las siguientes funcionalidades: TODO
 
 - **API Gateway:** Implementado en módulos api_gw y api_gw_lambda_integration, ambos propios.
 
@@ -73,7 +77,7 @@ TODO PONER FORO ARQUITECTURA
 
 - **fileset:** se utiliza en el módulo static_website para recorrer el directorio de recursos para el sitio estático, obteniendo los archivos de una determinada extensión. Se utiliza con un for para iterar por todos los tipos de extensión.
 
-- **flatten:** se utiliza en el módulo static_website para unificar la lista de listas de nombre, tipo de archivo en una única lista paa trabajar más comodamente al subir los objetos.
+- **flatten:** se utiliza en el módulo static_website para unificar la lista de listas de nombre, tipo de archivo en una única lista para trabajar más comodamente al subir los objetos.
 
 
 ## Meta-Argumentos
