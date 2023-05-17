@@ -67,7 +67,8 @@ Se especifica un CIDR para la VPC, y se crean subredes en distintas Availability
 
 - **API Gateway:** Implementado en módulos api_gw y api_gw_lambda_integration, ambos propios.
 
-TODO PONER FORO ARQUITECTURA
+
+![alt text](https://github.com/AgustinNaso/Cloud-TP3/blob/main/TP3-DIAGRAMA.png?raw=true)
 
 
 ## Funciones
