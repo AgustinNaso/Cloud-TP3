@@ -58,7 +58,12 @@ Se especifica un CIDR para la VPC, y se crean subredes en distintas Availability
 
 - **Networking (VPC + SUBNETS):** Módulo vpc, utilizamos el módulo externo: [terraform-aws-modules/s3](https://registry.terraform.io/modules/terraform-aws-modules/s3-bucket/aws/latest).
  
-- **Lambda:** Implementado con módulos propios api_gw_lambda_integration y lambda, implementamos las siguientes funcionalidades: TODO
+- **Lambda:** Implementado con módulos propios api_gw_lambda_integration y lambda, implementamos las siguientes funcionalidades mockeadas: 
+  - **GET /get_queue_size:** Devuelve el número de reservas dado un restaurant_name.
+  - **GET /get_menu:** Devuelve el presigned url menú (public menú url) de un restaurant_name dado.
+  - **GET /upload_menu:** Devuelve el presigned url de un restaurant dado para subir el menú. Deberia estar conectada con cognito para autenticar el request.
+  - **POST /add_to_queue:** Simula la reserva de un cliente en un restaurant_name dado.
+
 
 - **API Gateway:** Implementado en módulos api_gw y api_gw_lambda_integration, ambos propios.
 
@@ -102,10 +107,6 @@ TODO PONER FORO ARQUITECTURA
 
 ![alt text](https://github.com/AgustinNaso/Cloud-TP3/blob/main/smartpager.png?raw=true)
 
-
-## Data mockeada
-
-TODO
 
 
 ## Rúbrica
