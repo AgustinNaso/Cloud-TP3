@@ -18,3 +18,15 @@ variable "bucket_access_OAI" {
   description  = "OAI of authorized bucket users"
   type         = list(string)
 }
+
+variable "index_document" {
+  description = "Index document for website bucket"
+  type        = string
+  default     = "index.html"
+}
+
+variable "error_document" {
+  description = "Error document for website bucket"
+  type        = string
+  default     = "error.html"
+}

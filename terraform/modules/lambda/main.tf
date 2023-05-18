@@ -1,7 +1,7 @@
 resource "aws_lambda_function" "this" {
   filename      = local.zip_file_name
   function_name = var.function_name
-  role          = "arn:aws:iam::${var.account_id}:role/LabRole"
+  role          = local.lab_role
   #function that handles the event
   handler       = local.handler
   runtime       = var.runtime

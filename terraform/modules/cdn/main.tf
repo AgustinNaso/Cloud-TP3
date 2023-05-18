@@ -86,7 +86,7 @@ resource "aws_cloudfront_distribution" "s3_distribution" {
     }
 
     tags = {
-        Name = "G3 CDN"
+        Name = local.cdn_name
     }
 
     aliases = var.aliases
