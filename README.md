@@ -98,7 +98,7 @@ Se especifica un CIDR para la VPC, y se crean subredes en distintas Availability
 ## Obteniendo el certificado para: smartpager.com.ar
 
  - Se compro el dominio smartpager.com.ar en el sitio donweb.com
- - Se le asiganron los NS records de la hosted zone creada en una de nuestras cuentas de AWS
+ - Se le asignaron los NS records de la hosted zone creada en una de nuestras cuentas de AWS
 
 ![alt text](https://github.com/AgustinNaso/Cloud-TP3/blob/main/donweb.png?raw=true)
 
