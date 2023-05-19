@@ -17,7 +17,7 @@ Módulo para la configuración de la CDN: CloudFront. Se definen los orígenes d
 
 ### Módulo lambda
 
-TODO BRITU
+Módulo para la definir las distintas funciones lambda que se utilizarán para manejar la lógica de la aplicación. Dado que se optó por una arquitectura serverless, el servicio de computo utilizado será AWS Lambda. Este módulo requiere diversas variables. Dentro de estas variables, algunas de entre ellas son propias de la función mientras que otras son necesarias para la integración con el API Gateway de donde serán accedidas. Asimismo, para generar las lambdas, se deben definir policies correspondientes. Para ello, se define un security group propio a las lambdas.
 
 ### Módulo api_gw 
 
