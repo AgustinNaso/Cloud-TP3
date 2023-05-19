@@ -1,3 +1,9 @@
+# IMPORTANTE: si quieren levantar la arquitectura, necesitamos incluir los NS de su hosted zone
+# en la configuración de nuestro dominio para que levante el ACM,
+# avisen por mail con los NS de su hosted zone para que
+# los incluyamos en nuestra administración de dominio. De todos modos dejamos screenshots en el
+# readme mostrando que compramos el dominio y le asignamos un certificado con ACM usando terraform.
+
 #pedir el certificado
 resource "aws_acm_certificate" "this" {
   domain_name               = var.domain_name
